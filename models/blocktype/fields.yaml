@@ -1,0 +1,34 @@
+tabs:
+  fields:
+    title:
+      tab: Block Details
+      label: Block Type Name
+      comment: A friendly name to describe this block type
+      type: text
+      required: true
+      span: auto
+    slug:
+      tab: Block Details
+      label: Block Code
+      comment: Code name of the block
+      type: text
+      required: true
+      span: auto
+      preset: title
+    blocks:
+      tab: Block Details
+      label: Block Form Fields
+      comment: Add form fields that users will fill out when adding a block of this type
+      type: repeater
+      form:
+        fields:
+          text:
+            type: text
+            label: Text field
+    markup:
+      tab: Partial Template
+      label: This will be used by the CMS to render the block. Use the fields set in the Block Details section.
+      comment: Typical Twig syntax can be used.
+      type: codeeditor
+      size: giant
+      language: html

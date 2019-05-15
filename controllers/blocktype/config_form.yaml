@@ -1,0 +1,10 @@
+name: Static Page Block Type
+form: $/jkchr1s/staticpageblocks/models/blocktype/fields.yaml
+modelClass: Jkchr1s\StaticPageBlocks\Models\BlockType
+defaultRedirect: jkchr1s/staticpageblocks/blocktype
+create:
+    redirect: 'jkchr1s/staticpageblocks/blocktype/update/:id'
+    redirectClose: jkchr1s/staticpageblocks/blocktype
+update:
+    redirect: jkchr1s/staticpageblocks/blocktype
+    redirectClose: jkchr1s/staticpageblocks/blocktype
