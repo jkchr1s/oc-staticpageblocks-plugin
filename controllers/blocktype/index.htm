@@ -1,1 +1,7 @@
-<?= $this->listRender() ?>
+<?= $this->makePartial('list_toolbar', []) ?>
+<p><br></p>
+
+
+<div id="list-blocktype">
+    <?= $this->makePartial('list_table') ?>
+</div>

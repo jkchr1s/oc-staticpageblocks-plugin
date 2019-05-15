@@ -20,10 +20,10 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'StaticPageBlocks',
-            'description' => 'No description provided yet...',
-            'author'      => 'Jkchr1s',
-            'icon'        => 'icon-leaf'
+            'name'        => 'Static Page Blocks',
+            'description' => 'Enables Blocks and Headless CMS API for Static Pages',
+            'author'      => 'jkchr1s',
+            'icon'        => 'icon-cubes'
         ];
     }
 
@@ -44,6 +44,22 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
+        // extend Static Pages menu
+        Event::listen('backend.menu.extendItems', function($manager) {
+            $manager->addSideMenuItems('RainLab.Pages', 'pages', [
+                'blocktypes' => [
+                    'label' => 'Block Types',
+                    'icon' => 'icon-cubes',
+                    'url' => Backend::url('jkchr1s/staticpageblocks/blocktype'),
+                    'attributes' => [
+                        'onclick' => 'window.location.href="' . Backend::url('jkchr1s/staticpageblocks/blocktype') . '"'
+                    ],
+                    'permissions' => ['rainlab.pages.manage_pages']
+                ]
+            ]);
+        });
+
+        // extend Static Pages page form
         Event::listen('backend.form.extendFieldsBefore', function(Form $widget) {
             if (!$widget->getController() instanceof Index
                 || !$widget->model instanceof Page

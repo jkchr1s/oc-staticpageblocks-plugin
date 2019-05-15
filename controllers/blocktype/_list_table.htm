@@ -1,0 +1,54 @@
+<div class="list-widget list-scrollable-container " id="Lists">
+    <div class="control-list list-scrollable" data-control="listwidget">
+        <table class="table data" data-control="rowlink">
+            <thead>
+            <tr>
+                <th class="list-checkbox">
+                    &nbsp;
+                </th>
+
+
+                <th class="list-cell-name-id">
+                    <a href="javascript:;">Block Type</a>
+                </th>
+
+                <th class="list-cell">
+                    <a href="javascript:;">Code</a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <?php foreach($this->getBlockTypes() as $idx => $blockType): ?>
+            <tr class=" ">
+                <td class="list-checkbox nolink">
+                    <div class="checkbox custom-checkbox nolabel">
+                        <input
+                            type="checkbox"
+                            name="checked[]"
+                            class="block-type-selection"
+                            id="Lists-checkbox-<?= $blockType->slug ?>"
+                            value="<?= $blockType->slug ?>" />
+                        <label for="Lists-checkbox-<?= $blockType->slug ?>">Check</label>
+                    </div>
+                </td>
+
+
+                <td class="list-cell-index-<?= $blockType->slug ?> list-cell-name-id">
+                    <a href="<?= Backend::url('jkchr1s/staticpageblocks/blocktype/update/' . urlencode($blockType->slug)) ?>">
+                        <?= $blockType->slug ?>
+                    </a>
+                </td>
+
+                <td class="list-cell-index-<?= $idx ?> list-cell-name-id">
+                    <a href="<?= Backend::url('jkchr1s/staticpageblocks/blocktype/update/' . urlencode($blockType->slug)) ?>">
+                        <?= $blockType->slug ?>
+                    </a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+
+            </tbody>
+        </table>
+    </div>
+</div>
