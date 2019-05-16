@@ -3,6 +3,7 @@
 use Backend;
 use Backend\Widgets\Form;
 use Event;
+use Jkchr1s\StaticPageBlocks\Classes\BlockTypeWidgetizer;
 use RainLab\Pages\Classes\Page;
 use RainLab\Pages\Controllers\Index;
 use System\Classes\PluginBase;
@@ -67,29 +68,19 @@ class Plugin extends PluginBase
                 return;
             }
 
-            $widget->tabs['fields']['viewBag[customFlag]'] = [
-                'tab' => 'Example',
+            $widget->tabs['fields']['viewBag[headless]'] = [
+                'tab' => 'Headless API',
                 'type' => 'checkbox',
-                'label' => 'Some custom flag'
+                'label' => 'Enable headless API',
+                'comment' => 'Allows API requests to fetch the block builder contents.'
             ];
 
             $widget->secondaryTabs['fields']['viewBag[blocks]'] = [
-                'tab' => 'Proof of Concept',
+                'tab' => 'Block Builder',
                 'type' => 'repeater',
                 'cssClass' => 'secondary-tab',
                 'prompt' => 'Add Block',
-                'groups' => [
-                    'block_paragraph' => [
-                        'name' => 'Paragraph',
-                        'description' => 'Adds a paragraph of text',
-                        'icon' => 'icon-paragraph',
-                        'fields' => [
-                            'markdown' => [
-                                'type' => 'markdown'
-                            ]
-                        ]
-                    ]
-                ]
+                'groups' => BlockTypeWidgetizer::repeaterGroups()
             ];
         });
     }

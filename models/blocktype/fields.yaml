@@ -1,34 +1,231 @@
 tabs:
-  fields:
-    title:
-      tab: Block Details
-      label: Block Type Name
-      comment: A friendly name to describe this block type
-      type: text
-      required: true
-      span: auto
-    slug:
-      tab: Block Details
-      label: Block Code
-      comment: Code name of the block
-      type: text
-      required: true
-      span: auto
-      preset: title
-    blocks:
-      tab: Block Details
-      label: Block Form Fields
-      comment: Add form fields that users will fill out when adding a block of this type
-      type: repeater
-      form:
-        fields:
-          text:
+    fields:
+        title:
+            tab: Block Details
+            label: Block Type Name
+            comment: A friendly name to describe this block type
             type: text
-            label: Text field
-    markup:
-      tab: Partial Template
-      label: This will be used by the CMS to render the block. Use the fields set in the Block Details section.
-      comment: Typical Twig syntax can be used.
-      type: codeeditor
-      size: giant
-      language: html
+            required: true
+            span: auto
+        slug:
+            tab: Block Details
+            label: Block Code
+            comment: Code name of the block
+            type: text
+            required: true
+            span: auto
+            preset: title
+        blocks:
+            tab: Block Details
+            label: Block Form Fields
+            comment: Add form fields that users will fill out when adding a block of this type
+            type: repeater
+            prompt: Add Block Form Field
+            groups:
+                text:
+                    name: Text field
+                    description: Adds a text field
+                    icon: icon-font
+                    fields:
+                        desc:
+                            type: section
+                            label: Text field
+                        name:
+                            type: text
+                            label: Field identifier
+                            span: auto
+                        label:
+                            type: text
+                            label: Field label
+                            span: auto
+                        description:
+                            type: text
+                            label: Field description
+                            span: auto
+                        span:
+                            label: Span width
+                            type: dropdown
+                            span: auto
+                            options:
+                                auto: Automatic
+                                left: Left
+                                right: Right
+                                full: Full Width
+                markdown:
+                    name: Markdown editor
+                    description: Adds a markdown editor field
+                    icon: icon-file-text-o
+                    fields:
+                        desc:
+                            type: section
+                            label: Markdown editor
+                        name:
+                            type: text
+                            label: Field identifier
+                            span: auto
+                        label:
+                            type: text
+                            label: Field label
+                            span: auto
+                        description:
+                            type: text
+                            label: Field description
+                            span: auto
+                        span:
+                            label: Span width
+                            type: dropdown
+                            span: auto
+                            options:
+                                auto: Automatic
+                                left: Left
+                                right: Right
+                                full: Full Width
+                mediafinder:
+                    name: Media finder
+                    description: Adds image/file picker
+                    icon: icon-file-image-o
+                    fields:
+                        desc:
+                            type: section
+                            label: Media finder
+                        name:
+                            type: text
+                            label: Field identifier
+                            span: auto
+                        label:
+                            type: text
+                            label: Field label
+                            span: auto
+                        description:
+                            type: text
+                            label: Field description
+                            span: auto
+                        span:
+                            label: Span width
+                            type: dropdown
+                            span: auto
+                            options:
+                                auto: Automatic
+                                left: Left
+                                right: Right
+                                full: Full Width
+                        mode:
+                            type: dropdown
+                            span: auto
+                            label: Mode
+                            default: image
+                            options:
+                                image: Image
+                                file: File
+                        imageWidth:
+                            type: number
+                            label: Image preview width (px)
+                            default: 50
+                            span: auto
+                            trigger:
+                                action: hide
+                                field: mode
+                                condition: value[file]
+                        imageHeight:
+                            type: number
+                            label: Image preview height (px)
+                            default: 50
+                            span: auto
+                            trigger:
+                                action: hide
+                                field: mode
+                                condition: value[file]
+                codeeditor:
+                    name: Code editor
+                    description: Adds a code ditor field
+                    icon: icon-code
+                    fields:
+                        desc:
+                            type: section
+                            label: Code editor
+                        name:
+                            type: text
+                            label: Field identifier
+                            span: auto
+                        label:
+                            type: text
+                            label: Field label
+                            span: auto
+                        description:
+                            type: text
+                            label: Field description
+                            span: auto
+                        span:
+                            label: Span width
+                            type: dropdown
+                            span: auto
+                            options:
+                                auto: Automatic
+                                left: Left
+                                right: Right
+                                full: Full Width
+                        language:
+                            label: Code Editor Type
+                            type: dropdown
+                            span: auto
+                            options:
+                                php: PHP
+                                js: JavaScript
+                                html: 'HTML / Twig'
+                        showGutter:
+                            label: Show line numbers
+                            type: switch
+                            span: auto
+                            default: true
+                        wrapWords:
+                            label: Word wrap
+                            type: switch
+                            span: auto
+                            default: true
+                richeditor:
+                    name: HTML editor
+                    description: Adds WYSIWYG HTML editor
+                    icon: icon-file-code-o
+                    fields:
+                        desc:
+                            type: section
+                            label: HTML editor
+                        name:
+                            type: text
+                            label: Field identifier
+                            span: auto
+                        label:
+                            type: text
+                            label: Field label
+                            span: auto
+                        description:
+                            type: text
+                            label: Field description
+                            span: auto
+                        span:
+                            label: Span width
+                            type: dropdown
+                            span: auto
+                            options:
+                                auto: Automatic
+                                left: Left
+                                right: Right
+                                full: Full Width
+                section:
+                    name: Form section
+                    description: Renders a form section
+                    icon: icon-header
+                    fields:
+                        desc:
+                            type: section
+                            label: Form section
+                        label:
+                            type: text
+                            label: Heading label
+        markup:
+            tab: Partial Template
+            label: This will be used by the CMS to render the block. Use the fields set in the Block Details section.
+            comment: Typical Twig syntax can be used.
+            type: codeeditor
+            size: giant
+            language: html
