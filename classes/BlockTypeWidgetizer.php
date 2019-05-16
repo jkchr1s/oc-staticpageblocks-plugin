@@ -49,7 +49,6 @@ class BlockTypeWidgetizer
                 }
             }
         });
-        \Log::debug(json_encode($groups, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
         return $groups;
     }
 }
