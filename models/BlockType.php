@@ -13,7 +13,7 @@ class BlockType extends Content
     /**
      * @var string The container name associated with the model, eg: pages.
      */
-    protected $dirName = 'content/block-types';
+    protected $dirName = 'partials/block-types';
 
     /**
      * @var bool Wrap code section in PHP tags.

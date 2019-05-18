@@ -2,11 +2,15 @@
 
 use Backend;
 use Backend\Widgets\Form;
+use Cms\Classes\Controller as CmsController;
 use Event;
 use Jkchr1s\StaticPageBlocks\Classes\BlockTypeWidgetizer;
+use Log;
+use RainLab\Pages\Classes\Controller;
 use RainLab\Pages\Classes\Page;
 use RainLab\Pages\Controllers\Index;
 use System\Classes\PluginBase;
+use Twig\Extension\StringLoaderExtension;
 
 /**
  * StaticPageBlocks Plugin Information File
@@ -30,21 +34,25 @@ class Plugin extends PluginBase
 
     /**
      * Register method, called when the plugin is first registered.
-     *
-     * @return void
      */
     public function register()
     {
-
     }
 
     /**
      * Boot method, called right before the request route.
-     *
-     * @return array
      */
     public function boot()
     {
+        // add twig extension for parsing templates from string
+        Event::Listen('cms.page.beforeDisplay', function ($controller, $url, $page) {
+            $stringLoader = new StringLoaderExtension;
+
+            if (!$controller->getTwig()->hasExtension('template_from_string')) {
+                $controller->getTwig()->addExtension($stringLoader);
+            }
+        });
+
         // extend Static Pages menu
         Event::listen('backend.menu.extendItems', function($manager) {
             $manager->addSideMenuItems('RainLab.Pages', 'pages', [
@@ -85,6 +93,13 @@ class Plugin extends PluginBase
         });
     }
 
+    public function registerPageSnippets()
+    {
+        return [
+            'Jkchr1s\StaticPageBlocks\Components\StaticPageBlock' => 'staticPageBlock'
+        ];
+    }
+
     /**
      * Registers any front-end components implemented in this plugin.
      *
@@ -92,11 +107,7 @@ class Plugin extends PluginBase
      */
     public function registerComponents()
     {
-        return []; // Remove this line to activate
-
-        return [
-            'Jkchr1s\StaticPageBlocks\Components\MyComponent' => 'myComponent',
-        ];
+        return [];
     }
 
     /**
@@ -106,14 +117,7 @@ class Plugin extends PluginBase
      */
     public function registerPermissions()
     {
-        return []; // Remove this line to activate
-
-        return [
-            'jkchr1s.staticpageblocks.some_permission' => [
-                'tab' => 'StaticPageBlocks',
-                'label' => 'Some permission'
-            ],
-        ];
+        return [];
     }
 
     /**
@@ -123,16 +127,6 @@ class Plugin extends PluginBase
      */
     public function registerNavigation()
     {
-        return []; // Remove this line to activate
-
-        return [
-            'staticpageblocks' => [
-                'label'       => 'StaticPageBlocks',
-                'url'         => Backend::url('jkchr1s/staticpageblocks/mycontroller'),
-                'icon'        => 'icon-leaf',
-                'permissions' => ['jkchr1s.staticpageblocks.*'],
-                'order'       => 500,
-            ],
-        ];
+        return [];
     }
 }

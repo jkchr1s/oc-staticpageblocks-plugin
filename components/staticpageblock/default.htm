@@ -1,0 +1,3 @@
+{% for staticBlock in staticBlocks %}
+{% include template_from_string(staticBlock.template) ignore missing with staticBlock.data %}
+{% endfor %}
