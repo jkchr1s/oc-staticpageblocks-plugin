@@ -239,9 +239,12 @@ tabs:
                             type: text
                             label: Heading label
         markup:
-            tab: Partial Template
-            label: This will be used by the CMS to render the block. Use the fields set in the Block Details section.
-            comment: Typical Twig syntax can be used.
+            tab: Rendering Template
+            comment: 'All CMS templating tags are supported here, including {% partial ... %} and {% content ... %}. See https://octobercms.com/docs/markup/templating for details.'
             type: codeeditor
             size: giant
             language: html
+        notice:
+            tab: Rendering Template
+            type: partial
+            path: $/jkchr1s/staticpageblocks/models/blocktype/_rendering.htm
