@@ -5,6 +5,7 @@ namespace Jkchr1s\StaticPageBlocks\Models;
 use Cms\Classes\CmsObject;
 use Cms\Classes\Content;
 use File;
+use Jkchr1s\StaticPageBlocks\Classes\IconList;
 use Validator;
 
 class BlockType extends Content
@@ -28,6 +29,8 @@ class BlockType extends Content
         'markup',
         'settings',
         'blocks',
+        'icon',
+        'description',
     ];
 
     /**
@@ -141,6 +144,11 @@ class BlockType extends Content
         }
 
         return $curName;
+    }
+
+    public function getIconOptions()
+    {
+        return IconList::getList();
     }
 
 }

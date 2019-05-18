@@ -11,9 +11,13 @@ use October\Rain\Exception\ApplicationException;
 
 class BlockType extends Controller
 {
+//    use InspectableContainer;
+
     public $requiredPermissions = ['acme.blog.rainlab.pages.manage_pages'];
 
-    public $implement = ['Backend\Behaviors\FormController'];
+    public $implement = [
+        'Backend\Behaviors\FormController',
+    ];
 
     public $formConfig = 'config_form.yaml';
 
@@ -56,4 +60,19 @@ class BlockType extends Controller
             '#list-blocktype' => $this->makePartial('list_table')
         ];
     }
+
+//    public function onGetInspectorConfiguration()
+//    {
+//        // Load and use some values from the posted form
+//        //
+//        $someValue = Request::input('someValue');
+//
+//        return [
+//            'configuration' => [
+//                'properties' => [],
+//                'title'       => 'Inspector title',
+//                'description' => 'Inspector description'
+//            ]
+//        ];
+//    }
 }

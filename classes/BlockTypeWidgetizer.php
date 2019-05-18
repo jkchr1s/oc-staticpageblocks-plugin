@@ -20,7 +20,8 @@ class BlockTypeWidgetizer
             }
             $groups[$bt->slug] = [
                 'name' => $bt->title,
-                'description' => $bt->description,
+                'description' => empty($bt->description) ? 'No description provided' : $bt->description,
+                'icon' => empty($bt->icon) ? 'oc-leaf' : $bt->icon,
                 'fields' => [
                     '__blockHeading' => [
                         'type' => 'section',

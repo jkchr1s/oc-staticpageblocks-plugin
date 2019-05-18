@@ -15,6 +15,20 @@ tabs:
             required: true
             span: auto
             preset: title
+        description:
+            tab: Block Details
+            label: Description
+            comment: Brief description of block type
+            type: text
+            required: false
+            span: auto
+        icon:
+            tab: Block Details
+            label: Icon
+            comment: Display icon for block type
+            type: dropdown
+            span: auto
+            defailt: 'oc-leaf'
         blocks:
             tab: Block Details
             label: Block Form Fields
@@ -34,10 +48,12 @@ tabs:
                             type: text
                             label: Field identifier
                             span: auto
+                            comment: 'Code identifier for block type. Will be used as "_group" attribute in headless API'
                         label:
                             type: text
                             label: Field label
                             span: auto
+                            comment: Form label when filling out a block
                         description:
                             type: text
                             label: Field description
