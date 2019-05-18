@@ -46,10 +46,8 @@ class Plugin extends PluginBase
     {
         // add twig extension for parsing templates from string
         Event::Listen('cms.page.beforeDisplay', function ($controller, $url, $page) {
-            $stringLoader = new StringLoaderExtension;
-
             if (!$controller->getTwig()->hasExtension('template_from_string')) {
-                $controller->getTwig()->addExtension($stringLoader);
+                $controller->getTwig()->addExtension(new StringLoaderExtension);
             }
         });
 
