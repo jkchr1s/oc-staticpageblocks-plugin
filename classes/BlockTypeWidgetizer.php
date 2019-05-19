@@ -2,6 +2,7 @@
 
 namespace Jkchr1s\StaticPageBlocks\Classes;
 
+use Jkchr1s\StaticPageBlocks\Models\BlockSet;
 use Jkchr1s\StaticPageBlocks\Models\BlockType;
 
 class BlockTypeWidgetizer
@@ -11,7 +12,28 @@ class BlockTypeWidgetizer
      */
     public static function repeaterGroups()
     {
-        $groups = [];
+        $blockSets = BlockSet::all();
+        $groups = $blockSets->isEmpty()
+            ? []
+            : [
+                '__blockSetEmbed' => [
+                    'name' => 'Embed Block Set',
+                    'description' => 'Embeds a block set',
+                    'icon' => 'icon-cubes',
+                    'fields' => [
+                        '__blockHeading' => [
+                            'type' => 'section',
+                            'label' => 'Embed Block Set'
+                        ],
+                        'blockSlug' => [
+                            'type' => 'dropdown',
+                            'options' => $blockSets->flatMap(function (BlockSet $bs) {
+                                return [$bs->slug => $bs->title];
+                            })->toArray()
+                        ]
+                    ]
+                ]
+            ];
 
         BlockType::all()->each(function(BlockType $bt) use(&$groups) {
             $slug = $bt->slug;

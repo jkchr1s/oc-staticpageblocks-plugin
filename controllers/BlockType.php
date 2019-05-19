@@ -3,6 +3,7 @@
 namespace Jkchr1s\StaticPageBlocks\Controllers;
 
 use Backend\Classes\Controller;
+use BackendMenu;
 use Flash;
 use Input;
 use Jkchr1s\StaticPageBlocks\Models\BlockType as BlockTypeModel;
@@ -11,9 +12,8 @@ use October\Rain\Exception\ApplicationException;
 
 class BlockType extends Controller
 {
-//    use InspectableContainer;
 
-    public $requiredPermissions = ['acme.blog.rainlab.pages.manage_pages'];
+    public $requiredPermissions = ['cms.manage_layouts'];
 
     public $implement = [
         'Backend\Behaviors\FormController',
@@ -24,6 +24,7 @@ class BlockType extends Controller
     public function __construct()
     {
         parent::__construct();
+        BackendMenu::setContext('RainLab.Pages', 'pages', 'blocktypes');
     }
 
     public function index()

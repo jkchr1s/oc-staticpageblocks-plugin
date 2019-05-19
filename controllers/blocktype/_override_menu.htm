@@ -1,0 +1,12 @@
+<script type="text/javascript">
+    $('li[data-menu-item=pages]').click(function(e) {
+       e.preventDefault();
+       window.location.href = "<?= Backend::url('rainlab/pages/index') ?>";
+    });
+    $('li[data-menu-item=pages] i').removeClass('icon-files-o');
+    $('li[data-menu-item=pages] i').addClass('icon-arrow-circle-left');
+    $('li[data-menu-item=pages] span.nav-label').html('Back to Pages');
+    $('li[data-menu-item=menus]').remove();
+    $('li[data-menu-item=content]').remove();
+    $('li[data-menu-item=snippet]').remove();
+</script>

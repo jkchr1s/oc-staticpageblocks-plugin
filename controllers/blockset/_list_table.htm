@@ -1,0 +1,54 @@
+<div class="list-widget list-scrollable-container " id="Lists">
+    <div class="control-list list-scrollable" data-control="listwidget">
+        <table class="table data" data-control="rowlink">
+            <thead>
+            <tr>
+                <th class="list-checkbox">
+                    &nbsp;
+                </th>
+
+
+                <th class="list-cell-name-id">
+                    <a href="javascript:;">Name</a>
+                </th>
+
+                <th class="list-cell">
+                    <a href="javascript:;">Slug</a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <?php foreach($this->getBlockSets() as $idx => $blockSet): ?>
+            <tr class=" ">
+                <td class="list-checkbox nolink">
+                    <div class="checkbox custom-checkbox nolabel">
+                        <input
+                            type="checkbox"
+                            name="checked[]"
+                            class="block-type-selection"
+                            id="Lists-checkbox-<?= $blockSet->slug ?>"
+                            value="<?= $blockSet->slug ?>" />
+                        <label for="Lists-checkbox-<?= $blockSet->slug ?>">Check</label>
+                    </div>
+                </td>
+
+
+                <td class="list-cell-index-<?= $blockSet->slug ?> list-cell-name-id">
+                    <a href="<?= Backend::url('jkchr1s/staticpageblocks/blockset/update/' . urlencode($blockSet->slug)) ?>">
+                        <?= $blockSet->title ?>
+                    </a>
+                </td>
+
+                <td class="list-cell-index-<?= $idx ?> list-cell-name-id">
+                    <a href="<?= Backend::url('jkchr1s/staticpageblocks/blockset/update/' . urlencode($blockSet->slug)) ?>">
+                        <?= $blockSet->slug ?>
+                    </a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -2,11 +2,9 @@
 
 use Backend;
 use Backend\Widgets\Form;
-use Cms\Classes\Controller as CmsController;
 use Event;
 use Jkchr1s\StaticPageBlocks\Classes\BlockTypeWidgetizer;
 use Log;
-use RainLab\Pages\Classes\Controller;
 use RainLab\Pages\Classes\Page;
 use RainLab\Pages\Controllers\Index;
 use System\Classes\PluginBase;
@@ -54,14 +52,23 @@ class Plugin extends PluginBase
         // extend Static Pages menu
         Event::listen('backend.menu.extendItems', function($manager) {
             $manager->addSideMenuItems('RainLab.Pages', 'pages', [
+                'blocksets' => [
+                    'label' => 'Block Sets',
+                    'icon' => 'icon-cubes',
+                    'url' => Backend::url('jkchr1s/staticpageblocks/blockset'),
+                    'attributes' => [
+                        'onclick' => 'window.location.href="' . Backend::url('jkchr1s/staticpageblocks/blockset') . '"'
+                    ],
+                    'permissions' => ['rainlab.pages.manage_pages']
+                ],
                 'blocktypes' => [
                     'label' => 'Block Types',
-                    'icon' => 'icon-cubes',
+                    'icon' => 'icon-cube',
                     'url' => Backend::url('jkchr1s/staticpageblocks/blocktype'),
                     'attributes' => [
                         'onclick' => 'window.location.href="' . Backend::url('jkchr1s/staticpageblocks/blocktype') . '"'
                     ],
-                    'permissions' => ['rainlab.pages.manage_pages']
+                    'permissions' => ['cms.manage_layouts']
                 ]
             ]);
         });

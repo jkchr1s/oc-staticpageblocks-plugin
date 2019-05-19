@@ -1,0 +1,10 @@
+name: Static Page Block Set
+form: $/jkchr1s/staticpageblocks/models/blockset/fields.yaml
+modelClass: Jkchr1s\StaticPageBlocks\Models\BlockSet
+defaultRedirect: jkchr1s/staticpageblocks/blockset
+create:
+    redirect: 'jkchr1s/staticpageblocks/blockset/update/:id'
+    redirectClose: jkchr1s/staticpageblocks/blockset
+update:
+    redirect: jkchr1s/staticpageblocks/blockset
+    redirectClose: jkchr1s/staticpageblocks/blockset

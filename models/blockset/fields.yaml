@@ -1,0 +1,20 @@
+fields:
+    title:
+        label: Name
+        comment: A friendly name to describe this block set
+        type: text
+        required: true
+        span: auto
+    slug:
+        label: Slug
+        comment: Slug of this block set
+        type: text
+        required: true
+        span: auto
+        preset: title
+    blocks:
+        label: Blocks
+        comment: Add the blocks that you want to appear in this block set
+        type: repeater
+        prompt: Add Block
+        groups:
